@@ -1,0 +1,26 @@
+-- Task0 --
+Task0 has a big O notation of O(1) because
+no matter the size of N we will always have one
+output.
+
+-- Task1 --
+Task1 has a big O notation of O(n^2) because
+we have a nested for loop. As *args increases and
+objects in each arg increases our n will group exponentially.
+
+-- Task2 --
+Task2 has a big O notation of O(n) because we only
+have one for loop. As n increases N will increase at the same rate.
+
+-- Task3 --
+Task3 has a big O notation of O(nlogn) because
+we used a sort function to sort the codes and
+print out one line at a time.
+
+-- Task4 --
+noneTelemarketers function is O(n).
+isTelemarketer function is O(n).
+These two funcitons are both O(n) becasue as
+n increases so does N at the same rate.
+When the program is executed, the sort function will 
+be O(nlogn).
