@@ -3,26 +3,30 @@ class Node():
         self.value = value
         self.next = None
 
-def create_linked_list(input_list):
-    head = None
-    tail = None
-    
-    for value in input_list:
-        if head is None:
-            head = Node(value)
-            tail = head
-        else:
-            tail.next = Node(value)
-            tail = tail.next
-    return head
 
-def print_linked_list(head):
-    current_node = head
-    while current_node is not None:
-        print(f'[{current_node.value}]', end='')
-        current_node = current_node.next
+class LinkedList():
+    def __init__(self):
+        self.head = None
+        self.tail = None
+    
+    def append(self, value):
+        if self.head is None:
+            self.head = Node(value)
+            self.tail = self.head
+            return
+        self.tail.next = Node(value)
+        self.tail = self.tail.next
+        return
+
+    def print_linked_list(self):
+        node = self.head
+        while node:
+            print(f'[{node.value}]', end='')
+            node = node.next
 
 if __name__ == '__main__':
     input_list = [1,2,3,4,5,6,7]
-    head = create_linked_list(input_list)
-    print_linked_list(head)
+    linked_list = LinkedList()
+    for v in input_list:
+        linked_list.append(v)
+    linked_list.print_linked_list()
