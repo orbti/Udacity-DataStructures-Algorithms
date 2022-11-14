@@ -1,3 +1,10 @@
+
+"""Stack using an array.
+
+This method has a time complexity problem. When
+capacity is met we need to build a new array and
+transfer all the elements to the new array.
+"""
 class Stack():
     def __init__(self, initial_size=10):
         self.arr = [None for _ in range(initial_size)]
