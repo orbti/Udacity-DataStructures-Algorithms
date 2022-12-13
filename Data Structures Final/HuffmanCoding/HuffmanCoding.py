@@ -153,6 +153,4 @@ if __name__ == "__main__":
 
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print ("The content of the encoded data is: {}\n".format(decoded_data))
-    # Test Case 2
     
-    # Test Case 3
