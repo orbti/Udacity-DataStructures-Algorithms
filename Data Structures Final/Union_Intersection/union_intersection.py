@@ -48,7 +48,6 @@ class LinkedList:
         return size
 
 def union(llist_1, llist_2):
-    # Your Solution Here
     llist = LinkedList()
     node1 = llist_1.head
     node2 = llist_2.head
@@ -61,7 +60,6 @@ def union(llist_1, llist_2):
     return llist
 
 def intersection(llist_1, llist_2):
-    # Your Solution Here
     cache = set()
     llist = LinkedList()
     node = llist_1.head
@@ -74,7 +72,7 @@ def intersection(llist_1, llist_2):
             cache.add(node.value)
         node = node.next
     if llist.head is None:
-        raise ValueError("No intersecting Node values in llist_1 and llist_2.")
+        return "No intersecting Node values in llist_1 and llist_2."
     return llist
 
 # Test case 1
@@ -110,13 +108,3 @@ for i in element_2:
 
 print (union(linked_list_3,linked_list_4))
 print (intersection(linked_list_3,linked_list_4))
-
-# Add your own test cases: include at least three test cases
-# and two of them must include edge cases, such as null, empty or very large values
-
-# Test Case 1
-
-# Test Case 2
-
-# Test Case 3
-
