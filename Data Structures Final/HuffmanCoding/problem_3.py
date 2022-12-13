@@ -1,4 +1,5 @@
 import sys
+import heapq
 
 class Node:
 
@@ -8,6 +9,12 @@ class Node:
         self.left = left
         self.right = right
         self.code = ''
+
+    def __lt__(self, otherNode):
+        return self.freq < otherNode.freq
+    
+    def __gt__(self, otherNode):
+        return self.freq > otherNode.freq
 
     def __repr__(self):
         return f'Node({self.freq}, "{self.char}")'
@@ -54,13 +61,12 @@ def huffman_encoding(data: str) -> tuple:
     pq = []
     for char, freq in chars_with_frequency.items():
         pq.append(Node(freq, char))
-    while len(pq) > 1:
-        #Sort nodes in priority queue based on their frequency
-        pq = sorted(pq, key=lambda x: x.freq)
+    heapq.heapify(pq)
 
+    while len(pq) > 1:
         #Select smallest nodes in priority queue
-        left = pq.pop(0)
-        right = pq.pop(0)
+        left = heapq.heappop(pq)
+        right = heapq.heappop(pq)
 
         #Set node direction
         left.code = 0
@@ -70,7 +76,7 @@ def huffman_encoding(data: str) -> tuple:
         newNode = Node(left.freq+right.freq, left.char+right.char, left, right)
 
         #Append newNode into priority queue
-        pq.append(newNode)
+        heapq.heappush(pq, newNode)
 
     tree = pq[0]
     codes = calculate_codes(tree)

@@ -50,6 +50,15 @@ class BlockChain:
         self.tail.previous = cur_block
         return
 
+    def check_chain(self):
+        node = self.tail
+        while node.previous:
+            if node.previous_hash != node.previous.get_hash():
+                raise ValueError("BlockChain hash a discrepancy.")
+            node = node.previous
+        print(f'BlockChain in good order.')
+            
+
     def print_chain(self):
         block = self.head
         print('START OF BLOCK CHAIN')
@@ -77,4 +86,8 @@ block_chain2.add_block('more data')
 block_chain2.add_block('more data')
 block_chain2.print_chain()
 # Test Case 3
-
+block_chain3 = BlockChain()
+block_chain3.add_block('more data')
+block_chain3.add_block('more data')
+block_chain3.add_block('more data')
+block_chain3.check_chain()
