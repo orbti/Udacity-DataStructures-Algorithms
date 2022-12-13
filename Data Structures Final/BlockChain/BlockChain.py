@@ -27,7 +27,7 @@ class Block:
         return self.hash
     
     def __repr__(self):
-        return f'Block(timestamp="{self.timestamp}", data="{self.data}", hash={self.hash}, previous_hash="{self.previous_hash}")'
+        return f'Block(timestamp="{self.timestamp}", data="{self.data}", hash="{self.hash}", previous_hash="{self.previous_hash}")'
 
 
 class BlockChain:
@@ -44,10 +44,10 @@ class BlockChain:
             self.tail = self.head
             return
 
-        block = self.tail
-        block.next = Block(timestamp, data, block.hash)
-        block.next.previous = block
-        self.tail = block.next
+        cur_block = self.tail
+        cur_block.next = Block(timestamp, data, cur_block.get_hash())
+        self.tail = cur_block.next
+        self.tail.previous = cur_block
         return
 
     def print_chain(self):
