@@ -48,7 +48,7 @@ def huffman_output(codes: dict, data: str) -> str:
     """Helper function to convert char to coded string."""
     output = ''
     for char in data:
-        output = output + codes[char]
+        output += codes[char]
     return output
 
 
