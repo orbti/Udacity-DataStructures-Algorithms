@@ -55,7 +55,7 @@ def huffman_output(codes: dict, data: str) -> str:
 def huffman_encoding(data: str) -> tuple:
     #Create frequency table
     chars_with_frequency = calculate_frequency(data)
-    # print(chars_with_frequency)
+    #print(chars_with_frequency)
 
     #Create an array of Nodes for priority queue.
     pq = []
@@ -77,13 +77,15 @@ def huffman_encoding(data: str) -> tuple:
 
         #Append newNode into priority queue
         heapq.heappush(pq, newNode)
-
-    tree = pq[0]
-    codes = calculate_codes(tree)
-    # print(f'Charecters with Codes: {codes}')
-    encoded_data = huffman_output(codes, data)
-    # print(f'Encoded data: {encoded_data}')
-    return encoded_data, tree
+    try:
+        tree = heapq.heappop(pq)
+        codes = calculate_codes(tree)
+        #print(f'Charecters with Codes: {codes}')
+        encoded_data = huffman_output(codes, data)
+        #print(f'Encoded data: {encoded_data}')
+        return encoded_data, tree
+    except IndexError:
+        print('No Node in tree.')
     
 
 def huffman_decoding(data,tree):
@@ -133,19 +135,7 @@ if __name__ == "__main__":
     # and two of them must include edge cases, such as null, empty or very large values
 
     # Test Case 1
-    long_paragraph = """
-    In general, a data compression algorithm reduces the amount of memory (bits) required to represent a 
-    message (data). The compressed data, in turn, helps to reduce the transmission time from a sender to 
-    receiver. The sender encodes the data, and the receiver decodes the encoded data. As part of this problem, 
-    you have to implement the logic for both encoding and decoding. 
-    A data compression algorithm could be either lossy or lossless, meaning that when compressing the data, 
-    there is a loss (lossy) or no loss (lossless) of information. The Huffman Coding is a lossless data 
-    compression algorithm. Let us understand the two phases - encoding and decoding with the help of an example.
-    A  . Huffman Encoding
-    Assume that we have a string message AAAAAAABBBCCCCCCCDDEEEEEE comprising of 25 characters to be encoded. 
-    The string message can be an unsorted one as well. We will have two phases in encoding - building the Huffman 
-    tree (a binary tree), and generating the encoded data. The following steps illustrate the Huffman encoding:
-    """
+    long_paragraph = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     print ("The size of the data is: {}\n".format(sys.getsizeof(long_paragraph)))
     print ("The content of the data is: {}\n".format(long_paragraph))
@@ -160,3 +150,34 @@ if __name__ == "__main__":
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print ("The content of the encoded data is: {}\n".format(decoded_data))
     
+    # Test Case 2
+    long_paragraph = "a"
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(long_paragraph)))
+    print ("The content of the data is: {}\n".format(long_paragraph))
+
+    encoded_data, tree = huffman_encoding(long_paragraph)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+    # Test Case 3
+    long_paragraph = ""
+
+    print ("The size of the data is: {}\n".format(sys.getsizeof(long_paragraph)))
+    print ("The content of the data is: {}\n".format(long_paragraph))
+
+    encoded_data, tree = huffman_encoding(long_paragraph)
+
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print ("The content of the encoded data is: {}\n".format(decoded_data))

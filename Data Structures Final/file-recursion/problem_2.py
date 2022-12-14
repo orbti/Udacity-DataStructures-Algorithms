@@ -40,4 +40,4 @@ print(find_files('.c', '.'))
 # Test Case 2
 print(find_files('.gitkeep', '.'))
 # Test Case 3
-print(find_files('.h', '.'))
+print(find_files('.h', './abc'))

@@ -8,6 +8,9 @@ class LRU_Cache(object):
         self.capacity = capacity
         self.qe = deque([])
 
+    def __repr__(self):
+        return f'LRU_Cache({self.cache})'
+
     def most_recently_used(self, key):
         if key in self.qe:
             self.qe.remove(key)
@@ -53,3 +56,15 @@ our_cache.set(5, 5)
 our_cache.set(6, 6)
 
 print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+print(our_cache.get(5))
+print(our_cache.get(6))
+
+our_cache.set(7, 1234)
+our_cache.set(8, 123)
+our_cache.set(6, 101)  # least recently used not deleted
+our_cache.set(3, 900)
+
+print(our_cache.get(1))       # returns -1
+print(our_cache.get(2))       # returns -1
+print(our_cache.get(9))      # returns -1
+print(our_cache)
