@@ -23,8 +23,22 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
-    sqroot = number ** 0.5
-    return int(sqroot)
+    if number == 1:
+      return 1
+    min = 0
+    max = number
+    mid = (min + max)/2
+    for _ in range(30):
+      if mid * mid == number:
+         break
+      elif mid*mid > number:
+         max = mid
+         mid = (min+max)/2
+      else:
+         min = mid
+         mid = (min+max)/2
+    
+    return int(mid)
 
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
