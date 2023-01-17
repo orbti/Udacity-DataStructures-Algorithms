@@ -14,6 +14,9 @@ def get_min_max(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
+    if not ints:
+        return 'No ints'
+
     min = ints[0]
     max = ints[0]
 
@@ -30,5 +33,11 @@ import random
 
 l = [i for i in range(0, 10)]  # a list containing 0 - 9
 random.shuffle(l)
-
 print ("Pass" if ((0, 9) == get_min_max(l)) else "Fail")
+
+l2 = []
+print ("Pass" if ('No ints' == get_min_max(l2)) else "Fail")
+
+l3 = [i for i in range(0, 1320)]
+random.shuffle(l3)
+print("Pass" if ((0, 1319) == get_min_max(l3)) else "Fail")

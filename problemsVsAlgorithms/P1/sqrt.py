@@ -28,18 +28,15 @@ def sqrt(number):
    min = 0
    max = number
    mid = (min + max)/2
-   i = 0
-   while i < number*10:
+   for _ in range(number*10):
       if mid * mid == number:
          break
       elif mid*mid > number:
          max = mid
          mid = (min+max)/2
-         i += 1
       else:
          min = mid
          mid = (min+max)/2
-         i += 1
 
    return int(mid)
 
@@ -48,3 +45,4 @@ print ("Pass" if  (0 == sqrt(0)) else "Fail")
 print ("Pass" if  (4 == sqrt(16)) else "Fail")
 print ("Pass" if  (1 == sqrt(1)) else "Fail")
 print ("Pass" if  (5 == sqrt(27)) else "Fail")
+
